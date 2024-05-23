@@ -11,7 +11,7 @@ public class RecommenderImplementation {
         System.out.println("Name of the filter in use: " + filter + "\n");
 
         //return contentBasedFilter.getRecommendations(movie);
-        return filter.getRecommendations("Movie");
+        return filter.getRecommendations("Movies");
     }
 
 }
