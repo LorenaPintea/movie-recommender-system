@@ -5,15 +5,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component()
-public class RecommenderImplementation {
+public class RecommenderImplementation2 {
 
     private Filter filter;
 
+    //constructor injection
     @Autowired
-    @Qualifier("contentBasedFilter")
-    public void setFilter(Filter filter) {
+    public RecommenderImplementation2(@Qualifier("collaborativeFilter") Filter filter) {
+        super();
         this.filter = filter;
-        System.out.println("Setter method invoked...");
+        System.out.println("Constructor invoked...");
     }
 
     public String[] recommendMovies(String movie) {
