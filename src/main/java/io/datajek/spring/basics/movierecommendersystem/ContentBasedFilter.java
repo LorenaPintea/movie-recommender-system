@@ -1,20 +1,13 @@
 package io.datajek.spring.basics.movierecommendersystem;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Lookup;
-import org.springframework.stereotype.Component;
 
-import javax.swing.plaf.PanelUI;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ContentBasedFilter implements Filter {
     private static int instances = 0;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Autowired
+//    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private Movie movie;
 
     public ContentBasedFilter() {
@@ -34,7 +27,7 @@ public class ContentBasedFilter implements Filter {
         return new String[]{"CBF Filter"};
     }
 
-    @PostConstruct
+    /*@PostConstruct
     public void postConstruct() {
         //Initialization code here
         logger.info("In ContentBasedFilter postConstruct method");
@@ -44,6 +37,6 @@ public class ContentBasedFilter implements Filter {
     public void preDestroy() {
         //cleanup code here
         logger.info("In ContentBasedFilter preDestroy method");
-    }
+    }*/
 
 }

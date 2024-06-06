@@ -1,29 +1,30 @@
 package io.datajek.spring.basics.movierecommendersystem;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Arrays;
 
-@SpringBootApplication
 public class MovieRecommenderSystemApplication {
 
     public static void main(String[] args) {
         //ApplicationContext manages the beans and dependencies
-        ApplicationContext applicationContext = SpringApplication.run(MovieRecommenderSystemApplication.class, args);
+        ClassPathXmlApplicationContext  applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        //check the beans which have been loaded
+        System.out.println("\nBeans loaded:");
+        System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
 
         //Use ApplicationContext to get the recommender object
-        RecommenderImplementation recommenderImplementation = applicationContext.getBean(RecommenderImplementation.class);
+        RecommenderImplementation recommenderImplementation = applicationContext.getBean("recommenderImplementation", RecommenderImplementation.class);
         System.out.println(recommenderImplementation);
 
-        //Retrieving prototype bean from application context twice
-        Movie movie1 = applicationContext.getBean(Movie.class);
-        System.out.println(movie1);
+        //Use ApplicationContext to get the recommender2 object
+        RecommenderImplementation2 recommenderImplementation2 = applicationContext.getBean("recommenderImplementation2", RecommenderImplementation2.class);
+        System.out.println(recommenderImplementation2);
+        System.out.println(recommenderImplementation2.getFilter());
 
-        Movie movie2 = applicationContext.getBean(Movie.class);
-        System.out.println(movie2);
-
+        //Close application context
+        applicationContext.close();
     }
 
 }

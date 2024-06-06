@@ -1,24 +1,23 @@
 package io.datajek.spring.basics.movierecommendersystem;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-@Component()
 public class RecommenderImplementation {
-
-    private Filter filter;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     @Qualifier("contentBasedFilter")
+    private Filter filter;
+    //private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    public RecommenderImplementation(){};
     public void setFilter(Filter filter) {
-        logger.info("In RecommenderImplementation setter method..dependency injection");
+        //logger.info("In RecommenderImplementation setter method..dependency injection");
         this.filter = filter;
+    }
+
+    public Filter getFilter() {
+        return filter;
     }
 
     public String[] recommendMovies(String movie) {
@@ -28,7 +27,7 @@ public class RecommenderImplementation {
         return filter.getRecommendations("Movies");
     }
 
-    @PostConstruct
+    /*@PostConstruct
     public void postConstruct() {
         //initialization code here
         logger.info("In RecommenderImplementation postConstruct method");
@@ -38,6 +37,6 @@ public class RecommenderImplementation {
     public void preDestroy() {
         //cleanup code here
         logger.info("In RecommenderImplementation preDestroy method");
-    }
+    }*/
 
 }

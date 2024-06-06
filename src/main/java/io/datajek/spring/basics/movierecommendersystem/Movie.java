@@ -1,18 +1,8 @@
 package io.datajek.spring.basics.movierecommendersystem;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
 
-@Component
-@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode= ScopedProxyMode.TARGET_CLASS)
 public class Movie {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    //private Logger logger = LoggerFactory.getLogger(this.getClass());
     private static int instances = 0;
     private int id;
     private String name;
@@ -24,7 +14,7 @@ public class Movie {
         System.out.println("Movie constructor called!");
     }
 
-    @PostConstruct
+    /*@PostConstruct
     private void postConstruct() {
         //Initialization code here
         logger.info("In Movie postConstruct method");
@@ -34,7 +24,7 @@ public class Movie {
     private void preDestroy() {
         //cleanup code here
         logger.info("In Movie preDestroy method");
-    }
+    }*/
     public static int getInstances() {
         return Movie.instances;
     }
