@@ -1,30 +1,27 @@
 package io.datajek.spring.basics.movierecommendersystem;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.PropertySource;
 
-import java.util.Arrays;
 
+@SpringBootApplication
+@PropertySource("classpath:app.properties")
 public class MovieRecommenderSystemApplication {
 
     public static void main(String[] args) {
         //ApplicationContext manages the beans and dependencies
-        ClassPathXmlApplicationContext  applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-
-        //check the beans which have been loaded
-        System.out.println("\nBeans loaded:");
-        System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
+        ApplicationContext applicationContext = SpringApplication.run(MovieRecommenderSystemApplication.class, args);
 
         //Use ApplicationContext to get the recommender object
-        RecommenderImplementation recommenderImplementation = applicationContext.getBean("recommenderImplementation", RecommenderImplementation.class);
+        RecommenderImplementation recommenderImplementation = applicationContext.getBean(RecommenderImplementation.class);
         System.out.println(recommenderImplementation);
 
-        //Use ApplicationContext to get the recommender2 object
-        RecommenderImplementation2 recommenderImplementation2 = applicationContext.getBean("recommenderImplementation2", RecommenderImplementation2.class);
-        System.out.println(recommenderImplementation2);
-        System.out.println(recommenderImplementation2.getFilter());
+        //grab the property used in application.properties
+        String favoriteMovie = recommenderImplementation.getFavoriteMovie();
+        System.out.println(favoriteMovie);
 
-        //Close application context
-        applicationContext.close();
     }
 
 }

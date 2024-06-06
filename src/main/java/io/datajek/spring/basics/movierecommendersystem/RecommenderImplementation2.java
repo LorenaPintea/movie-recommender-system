@@ -1,13 +1,18 @@
 package io.datajek.spring.basics.movierecommendersystem;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RecommenderImplementation2 {
 
     private Filter filter;
 
     //constructor injection
-
-    public RecommenderImplementation2(Filter filter) {
+    @Autowired
+    public RecommenderImplementation2(@Qualifier("collaborativeFilter") Filter filter) {
         super();
         this.filter = filter;
         System.out.println("Constructor invoked...");
