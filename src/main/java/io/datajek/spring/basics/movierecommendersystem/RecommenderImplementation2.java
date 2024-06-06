@@ -20,7 +20,6 @@ public class RecommenderImplementation2 {
     public String[] recommendMovies(String movie) {
         System.out.println("Name of the filter in use: " + filter + "\n");
 
-        //return contentBasedFilter.getRecommendations(movie);
         return filter.getRecommendations("Movies");
     }
 
